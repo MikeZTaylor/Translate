@@ -104,7 +104,7 @@
 				TargetAttributes = {
 					FFD2F9B21BD1101A00F54057 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 3H68RG2SRC;
+						DevelopmentTeam = 46PYG89YQ5;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -266,7 +266,8 @@
 		FFD2F9C61BD1101A00F54057 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 3H68RG2SRC;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				DEVELOPMENT_TEAM = 46PYG89YQ5;
 				INFOPLIST_FILE = Translate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ie.wit.Translate;
@@ -278,7 +279,8 @@
 		FFD2F9C71BD1101A00F54057 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 3H68RG2SRC;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				DEVELOPMENT_TEAM = 46PYG89YQ5;
 				INFOPLIST_FILE = Translate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ie.wit.Translate;
