@@ -12,17 +12,30 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var textToTranslate: UITextView!
     @IBOutlet weak var translatedText: UITextView!
+    @IBOutlet var toolbar: UIToolbar!
     
     //var data = NSMutableData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        toolbar.barStyle = UIBarStyle.black
+        self.view.addSubview(toolbar)
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldBeginEditing(_textField: UITextField) -> Bool
+    {
+        _textField.inputAccessoryView = toolbar
+        return true
+    }
+    
+    @IBAction func didClickDoneButton(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
     }
     
     @IBAction func translate(_ sender: AnyObject) {

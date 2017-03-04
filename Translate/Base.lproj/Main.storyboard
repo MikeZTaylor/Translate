@@ -39,12 +39,31 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Translate"/>
+                                <connections>
+                                    <action selector="translate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Gc-2N-ecI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="textToTranslate" destination="dii-Vg-90N" id="4q9-qw-W7E"/>
+                        <outlet property="toolbar" destination="M0H-RM-W1F" id="qLd-NV-yMw"/>
+                        <outlet property="translatedText" destination="LaV-KV-DTJ" id="tvn-6D-yHR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="M0H-RM-W1F">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem title="Done" style="done" id="yQg-uy-9kb">
+                            <connections>
+                                <action selector="didClickDoneButton:" destination="BYZ-38-t0r" id="mf2-bf-D5m"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="332" y="388.15592203898052"/>
         </scene>
