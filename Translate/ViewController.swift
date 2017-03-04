@@ -8,19 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var textToTranslate: UITextView!
     @IBOutlet weak var translatedText: UITextView!
-    @IBOutlet var toolbar: UIToolbar!
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var displayedLanguage: UILabel!
+    
+    var languages = ["Afrikanns", "English", "Irish", "Icelandic"]
+    
+    let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
     //var data = NSMutableData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        toolbar.barStyle = UIBarStyle.black
-        self.view.addSubview(toolbar)
-        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        displayedLanguage.text = languages[1]
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,14 +33,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldShouldBeginEditing(_textField: UITextField) -> Bool
-    {
-        _textField.inputAccessoryView = toolbar
-        return true
-    }
-    
-    @IBAction func didClickDoneButton(_ sender: UIBarButtonItem) {
-        view.endEditing(true)
+    override func touchesBegan(_: Set<UITouch>, with: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @IBAction func translate(_ sender: AnyObject) {
@@ -43,26 +42,44 @@ class ViewController: UIViewController {
         let str = textToTranslate.text
         let escapedStr = str?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
-        let langStr = ("en|fr").addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        var translateTo = ""
+        switch pickerView.selectedRow(inComponent: 0) {
+        case 0:
+            translateTo = "af"
+        case 1:
+            translateTo = "en"
+        case 2:
+            translateTo = "ga"
+        default:
+            translateTo = "is"
+        }
+        
+        let langStr = ("en|"+translateTo).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        
         
         let urlStr:String = ("https://api.mymemory.translated.net/get?q="+escapedStr!+"&langpair="+langStr!)
         
+        
         let url = URL(string: urlStr)
+        
         
         let request = URLRequest(url: url!)// Creating Http Request
         
+        
         //var data = NSMutableData()var data = NSMutableData()
         
+        
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        indicator.color = UIColor.red
         indicator.center = view.center
         view.addSubview(indicator)
         indicator.startAnimating()
         
+        
         var result = "<Translation Error>"
         
-        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) { response, data, error in
-            
-            indicator.stopAnimating()
+        let task = defaultSession.dataTask(with: request){
+            (data, response, error) in
             
             if let httpResponse = response as? HTTPURLResponse {
                 if(httpResponse.statusCode == 200){
@@ -76,10 +93,30 @@ class ViewController: UIViewController {
                     }
                 }
                 
-                self.translatedText.text = result
+                DispatchQueue.main.sync()
+                    {
+                        indicator.stopAnimating()
+                        self.translatedText.text = result
+                }
             }
         }
-        
+        task.resume()
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return languages.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return languages[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        displayedLanguage.text = languages[row]
     }
 }
 
