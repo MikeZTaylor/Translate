@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,16 +20,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Mz-PX-uKp">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="743"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Mz-PX-uKp">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="Bnn-4i-0mV"/>
+                                    <constraint firstAttribute="height" constant="736" id="fSX-k0-APe"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Mz-PX-uKp" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="6CB-d1-aiC"/>
-                            <constraint firstItem="6Mz-PX-uKp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EnV-rc-iSr"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="6Mz-PX-uKp" secondAttribute="bottom" constant="-7" id="Rec-Mh-hGY"/>
-                            <constraint firstAttribute="trailing" secondItem="6Mz-PX-uKp" secondAttribute="trailing" id="x5P-68-L6Y"/>
+                            <constraint firstItem="6Mz-PX-uKp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="UD9-0D-nHq"/>
+                            <constraint firstItem="6Mz-PX-uKp" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="YxR-le-KUi"/>
+                            <constraint firstItem="6Mz-PX-uKp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="fqk-wj-TdU"/>
+                            <constraint firstItem="6Mz-PX-uKp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="pZj-j6-1Hw"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +42,4 @@
             <point key="canvasLocation" x="52.173913043478265" y="374.18478260869568"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Default.png" width="1242" height="2208"/>
-    </resources>
 </document>

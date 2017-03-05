@@ -15,7 +15,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var displayedLanguage: UILabel!
     
-    var languages = ["Afrikanns", "English", "Irish", "Icelandic"]
+    var languages = ["Afrikanns", "Hebrew", "Irish", "Icelandic"]
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -49,7 +49,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         case 0:
             translateTo = "af"
         case 1:
-            translateTo = "en"
+            translateTo = "he"
         case 2:
             translateTo = "ga"
         default:
