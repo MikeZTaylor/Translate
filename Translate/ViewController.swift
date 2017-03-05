@@ -14,7 +14,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var translatedText: UITextView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var displayedLanguage: UILabel!
-    
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+
     var languages = ["Afrikanns", "Hebrew", "Irish", "Icelandic"]
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -32,6 +33,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         //tap.cancelsTouchesInView = false
         
         view.addGestureRecognizer(tap)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let horizontalConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        view.addConstraint(horizontalConstraint)
+        
+        let verticalConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        view.addConstraint(verticalConstraint)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,11 +81,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         //var data = NSMutableData()var data = NSMutableData()
         
         
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        indicator.color = UIColor.red
-        indicator.center = view.center
-        view.addSubview(indicator)
-        indicator.startAnimating()
+        //let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        //indicator.color = UIColor.red
+        //indicator.center = view.center
+        //view.addSubview(indicator)
+        //indicator.startAnimating()
+        activityIndicator.startAnimating()
         
         
         var result = "<Translation Error>"
@@ -97,7 +108,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
                 DispatchQueue.main.sync()
                     {
-                        indicator.stopAnimating()
+                        //indicator.stopAnimating()
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.isHidden = true
                         self.translatedText.text = result
                 }
             }
@@ -125,4 +138,3 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         view.endEditing(true)
     }
 }
-
