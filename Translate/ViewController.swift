@@ -14,6 +14,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var translatedText: UITextView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var displayedLanguage: UILabel!
+    var textField : UITextField!
+    
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
     var languages = ["Afrikanns", "Hebrew", "Irish", "Icelandic"]
