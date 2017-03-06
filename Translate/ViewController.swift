@@ -25,6 +25,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
     //var data = NSMutableData()
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
+        }
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
