@@ -10,17 +10,83 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    
-    
     @IBOutlet weak var textToTranslate: UITextView!
     @IBOutlet weak var translatedText: UITextView!
-    @IBOutlet weak var pickerView: UIPickerView!
-    @IBOutlet weak var displayedLanguage: UILabel!
+    
     var textField : UITextField!
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    @IBOutlet weak var textbox1: UITextField!
+    @IBOutlet weak var textbox2: UITextField!
+    
+    @IBOutlet weak var toTranslatePicker: UIPickerView!
+    @IBOutlet weak var slectedLanguagePicker: UIPickerView!
+    
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
-    var languages = ["Afrikanns", "Hebrew", "Irish", "Icelandic"]
+    var languages = ["Afrikaans", "Hebrew", "Irish", "Icelandic"]
+    var translateFrom = [" ", "English"]
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        var countrows : Int = translateFrom.count
+        if pickerView == slectedLanguagePicker {
+            
+            countrows = self.languages.count
+        }
+        
+        return countrows
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == toTranslatePicker {
+            
+            let titleRow = translateFrom[row]
+            
+            return titleRow
+            
+        }
+            
+        else if pickerView == slectedLanguagePicker{
+            let titleRow = languages[row]
+            
+            return titleRow
+        }
+        
+        return ""
+    }
+    
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == toTranslatePicker {
+            self.textbox1.text = self.translateFrom[row]
+            self.toTranslatePicker.isHidden = true
+        }
+            
+        else if pickerView == slectedLanguagePicker{
+            self.textbox2.text = self.languages[row]
+            self.slectedLanguagePicker.isHidden = true
+            
+        }
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (textField == self.textbox1){
+            self.toTranslatePicker.isHidden = false
+            
+        }
+        else if (textField == self.textbox2){
+            self.slectedLanguagePicker.isHidden = false
+            
+        }
+        
+    }
+    
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -31,15 +97,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor(red:0.45, green:0.88, blue:0.48, alpha:1.0)
          navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        displayedLanguage.text = languages[1]
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
@@ -68,15 +130,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let escapedStr = str?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
         var translateTo = ""
-        switch pickerView.selectedRow(inComponent: 0) {
+        switch slectedLanguagePicker.selectedRow(inComponent: 0) {
         case 0:
             translateTo = "af"
         case 1:
             translateTo = "he"
         case 2:
             translateTo = "ga"
-        default:
+        case 3:
             translateTo = "is"
+        default:
+            translateTo = "en"
         }
         
         let langStr = ("en|"+translateTo).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -131,21 +195,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         task.resume()
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return languages.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return languages[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        displayedLanguage.text = languages[row]
-    }
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
