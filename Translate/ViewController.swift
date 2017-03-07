@@ -22,7 +22,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var slectedLanguagePicker: UIPickerView!
     
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-
+    
     var languages = ["Afrikaans", "Hebrew", "Irish", "French", "Icelandic"]
     var translateFrom = [" ", "English"]
     
@@ -38,7 +38,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             countrows = self.languages.count
         }
         
-        return countrows  
+        return countrows
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -59,8 +59,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return ""
     }
     
-    
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == toTranslatePicker {
             self.textbox1.text = self.translateFrom[row]
@@ -73,7 +71,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
         }
     }
-    
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if (textField == self.textbox1){
@@ -118,10 +115,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         textView.resignFirstResponder()
     }
     
+    
     func doneButtonAction(){
         self.view.endEditing(true)
     }
     
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -135,7 +137,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor(red:0.45, green:0.88, blue:0.48, alpha:1.0)
-         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         //toTranslatePicker.selectRow(row, inComponent: 1, animated: true)
         
@@ -143,7 +145,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
-        
         view.addGestureRecognizer(tap)
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -156,18 +157,22 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         //init toolbar
         let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
+        
         //create left side empty space so that done button set on right side
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(ViewController.doneButtonAction))
+        
         //array of BarButtonItems
         var arr = [UIBarButtonItem]()
         arr.append(flexSpace)
         arr.append(doneBtn)
         toolbar.setItems(arr, animated: false)
         toolbar.sizeToFit()
+        
         //setting toolbar as inputAccessoryView
         self.textbox1.inputAccessoryView = toolbar
         self.textbox2.inputAccessoryView = toolbar
+        self.textToTranslate.inputAccessoryView = toolbar
         
     }
     
@@ -200,26 +205,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         let langStr = ("en|"+translateTo).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
-        
         let urlStr:String = ("https://api.mymemory.translated.net/get?q="+escapedStr!+"&langpair="+langStr!)
-        
         
         let url = URL(string: urlStr)
         
-        
         let request = URLRequest(url: url!)// Creating Http Request
         
-        
-        //var data = NSMutableData()var data = NSMutableData()
-        
-        
-        //let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        //indicator.color = UIColor.red
-        //indicator.center = view.center
-        //view.addSubview(indicator)
-        //indicator.startAnimating()
         activityIndicator.startAnimating()
-        
         
         var result = "<Translation Error>"
         
@@ -240,7 +232,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
                 DispatchQueue.main.sync()
                     {
-                        //indicator.stopAnimating()
                         self.activityIndicator.stopAnimating()
                         self.activityIndicator.isHidden = true
                         self.translatedText.text = result
@@ -249,10 +240,4 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         task.resume()
     }
-    
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-    
 }
