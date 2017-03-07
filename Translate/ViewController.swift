@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var textToTranslate: UITextView!
     @IBOutlet weak var translatedText: UITextView!
@@ -23,7 +23,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
-    var languages = ["Afrikaans", "Hebrew", "Irish", "Icelandic"]
+    var languages = ["Afrikaans", "Hebrew", "Irish", "French", "Icelandic"]
     var translateFrom = [" ", "English"]
     
     
@@ -87,6 +87,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -140,6 +146,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         case 2:
             translateTo = "ga"
         case 3:
+            translateTo = "fr"
+        case 4:
             translateTo = "is"
         default:
             translateTo = "en"
@@ -201,4 +209,5 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
 }
