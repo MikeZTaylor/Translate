@@ -102,6 +102,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         navigationController?.navigationBar.barTintColor = UIColor(red:0.45, green:0.88, blue:0.48, alpha:1.0)
          navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
+        //toTranslatePicker.selectRow(row, inComponent: 1, animated: true)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
@@ -116,7 +118,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         let verticalConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
         view.addConstraint(verticalConstraint)
-
+        
     }
     
     override func didReceiveMemoryWarning() {
