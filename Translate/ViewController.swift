@@ -89,6 +89,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        self.textbox1.resignFirstResponder()
         return true
     }
     
@@ -117,8 +118,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         textView.resignFirstResponder()
     }
     
+    func doneButtonAction(){
+        self.view.endEditing(true)
+    }
     
-
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -151,7 +154,23 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let verticalConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
         view.addConstraint(verticalConstraint)
         
+        //init toolbar
+        let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
+        //create left side empty space so that done button set on right side
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(ViewController.doneButtonAction))
+        //array of BarButtonItems
+        var arr = [UIBarButtonItem]()
+        arr.append(flexSpace)
+        arr.append(doneBtn)
+        toolbar.setItems(arr, animated: false)
+        toolbar.sizeToFit()
+        //setting toolbar as inputAccessoryView
+        self.textbox1.inputAccessoryView = toolbar
+        self.textbox2.inputAccessoryView = toolbar
+        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
