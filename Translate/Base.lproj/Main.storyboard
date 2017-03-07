@@ -91,7 +91,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="g7M-gO-HCW"/>
                                 </connections>
                             </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dii-Vg-90N">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text to Translate" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dii-Vg-90N">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="83" id="HnT-i6-pR8"/>
@@ -99,6 +99,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="wtN-NW-Gum"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.96419608160621761" green="0.96419608160621761" blue="0.96419608160621761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
