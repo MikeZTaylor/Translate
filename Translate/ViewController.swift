@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var textToTranslate: UITextView!
     @IBOutlet weak var translatedText: UITextView!
     
+    @IBOutlet weak var button: UIButton!
     var textField : UITextField!
     
     @IBOutlet weak var textbox1: UITextField!
@@ -174,6 +175,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.textbox2.inputAccessoryView = toolbar
         self.textToTranslate.inputAccessoryView = toolbar
         
+        button.layer.cornerRadius = 4
     }
     
     
