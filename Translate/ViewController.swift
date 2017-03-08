@@ -63,12 +63,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == toTranslatePicker {
             self.textbox1.text = self.translateFrom[row]
-            self.toTranslatePicker.isHidden = true
+            self.toTranslatePicker.isHidden = false
         }
             
         else if pickerView == slectedLanguagePicker{
             self.textbox2.text = self.languages[row]
-            self.slectedLanguagePicker.isHidden = true
+            self.slectedLanguagePicker.isHidden = false
             
         }
     }
