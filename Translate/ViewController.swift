@@ -19,6 +19,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var textbox1: UITextField!
     @IBOutlet weak var textbox2: UITextField!
     
+    @IBOutlet weak var translatefrom: UILabel!
+    
     @IBOutlet weak var toTranslatePicker: UIPickerView!
     @IBOutlet weak var slectedLanguagePicker: UIPickerView!
     
