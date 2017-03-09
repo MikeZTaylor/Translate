@@ -61,34 +61,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     
-    
-    
-   // func numberOfComponents(in pickerView: UIPickerView) -> Int {
-    //    return languageArray.count
-   // }
-    
-   // func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-   // }
-    
-   // func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-
-   // }
-    
-   // func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-   // }
-    
-  //  func textFieldDidBeginEditing(_ textField: UITextField) {
-    //    if (textField == self.textbox1){
-    //        self.toTranslatePicker.isHidden = //false
-    
-      //  }
-      //  else if (textField == self.textbox2){
-          //  self.slectedLanguagePicker.isHidden = false
-            
-      //  }
-        
-   // }
-    
    // func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     //    textField.resignFirstResponder()
     //    self.textbox1.resignFirstResponder()

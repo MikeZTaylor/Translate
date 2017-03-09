@@ -91,7 +91,7 @@
                                         <rect key="frame" x="0.0" y="223" width="385" height="8"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Translated Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8jB-8r-7gv" userLabel="Translated Text">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Translated Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8jB-8r-7gv" userLabel="Translated Text">
                                         <rect key="frame" x="0.0" y="239" width="385" height="159"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
