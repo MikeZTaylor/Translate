@@ -10,88 +10,90 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
+    var translated: String = ""
+    var notTranslated: String = ""
+    
     @IBOutlet weak var textToTranslate: UITextView!
     @IBOutlet weak var translatedText: UITextView!
     
     @IBOutlet weak var button: UIButton!
     
     var textField : UITextField!
-    @IBOutlet weak var textbox1: UITextField!
-    @IBOutlet weak var textbox2: UITextField!
     
-    @IBOutlet weak var translatefrom: UILabel!
+    @IBOutlet weak var toBeTranslated: UILabel!
+    @IBOutlet weak var textTranslated: UILabel!
     
-    @IBOutlet weak var toTranslatePicker: UIPickerView!
-    @IBOutlet weak var slectedLanguagePicker: UIPickerView!
+    @IBOutlet weak var languagePickerView: UIPickerView!
     
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
-    var languages = ["Afrikaans", "Hebrew", "Irish", "French", "Icelandic"]
-    var translateFrom = [" ", "English"]
+    var languageArray = [[" ", "English"], ["Afrikaans", "Hebrew", "Irish", "Icelandic", "French"]]
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return languageArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var countrows : Int = translateFrom.count
-        if pickerView == slectedLanguagePicker {
-            
-            countrows = self.languages.count
-        }
-        
-        return countrows
+        return languageArray[component].count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == toTranslatePicker {
-            
-            let titleRow = translateFrom[row]
-            
-            return titleRow
-            
-        }
-            
-        else if pickerView == slectedLanguagePicker{
-            let titleRow = languages[row]
-            
-            return titleRow
-        }
-        
-        return ""
+        return languageArray[component][row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == toTranslatePicker {
-            self.textbox1.text = self.translateFrom[row]
-            self.toTranslatePicker.isHidden = false
-        }
-            
-        else if pickerView == slectedLanguagePicker{
-            self.textbox2.text = self.languages[row]
-            self.slectedLanguagePicker.isHidden = false
-            
-        }
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField == self.textbox1){
-            self.toTranslatePicker.isHidden = false
-            
-        }
-        else if (textField == self.textbox2){
-            self.slectedLanguagePicker.isHidden = false
-            
-        }
+        print(component)
+        print(row)
         
+        switch (component) {
+        case 0:
+            notTranslated = languageArray[component][row]
+            toBeTranslated.text = notTranslated
+            
+        case 1:
+            translated = languageArray[component][row]
+            textTranslated.text = translated
+
+        default:
+            break
+        }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        self.textbox1.resignFirstResponder()
-        return true
-    }
+    
+    
+    
+   // func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    //    return languageArray.count
+   // }
+    
+   // func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+   // }
+    
+   // func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+
+   // }
+    
+   // func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+   // }
+    
+  //  func textFieldDidBeginEditing(_ textField: UITextField) {
+    //    if (textField == self.textbox1){
+    //        self.toTranslatePicker.isHidden = //false
+    
+      //  }
+      //  else if (textField == self.textbox2){
+          //  self.slectedLanguagePicker.isHidden = false
+            
+      //  }
+        
+   // }
+    
+   // func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    //    textField.resignFirstResponder()
+    //    self.textbox1.resignFirstResponder()
+    //    return true
+   // }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n")
@@ -173,8 +175,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         toolbar.sizeToFit()
         
         //setting toolbar as inputAccessoryView
-        self.textbox1.inputAccessoryView = toolbar
-        self.textbox2.inputAccessoryView = toolbar
+      //  self.textbox1.inputAccessoryView = toolbar
+      //  self.textbox2.inputAccessoryView = toolbar
         self.textToTranslate.inputAccessoryView = toolbar
         
         button.layer.cornerRadius = 4
@@ -192,7 +194,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let escapedStr = str?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
         var translateTo = ""
-        switch slectedLanguagePicker.selectedRow(inComponent: 0) {
+        switch languagePickerView.selectedRow(inComponent: 1) {
         case 0:
             translateTo = "af"
         case 1:
@@ -200,9 +202,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         case 2:
             translateTo = "ga"
         case 3:
-            translateTo = "fr"
-        case 4:
             translateTo = "is"
+        case 4:
+            translateTo = "fr"
         default:
             translateTo = "en"
         }

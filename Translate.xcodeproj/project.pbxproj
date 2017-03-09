@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		647EB8DD1E71ABB4000AAA57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 647EB8DC1E71ABB4000AAA57 /* Default.png */; };
+		647EB8DF1E71D0E8000AAA57 /* translate.png in Resources */ = {isa = PBXBuildFile; fileRef = 647EB8DE1E71D0E8000AAA57 /* translate.png */; };
 		FFD2F9B71BD1101A00F54057 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD2F9B61BD1101A00F54057 /* AppDelegate.swift */; };
 		FFD2F9B91BD1101A00F54057 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD2F9B81BD1101A00F54057 /* ViewController.swift */; };
 		FFD2F9BC1BD1101A00F54057 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD2F9BA1BD1101A00F54057 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		647EB8DC1E71ABB4000AAA57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		647EB8DE1E71D0E8000AAA57 /* translate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = translate.png; sourceTree = "<group>"; };
 		FFD2F9B31BD1101A00F54057 /* Translate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD2F9B61BD1101A00F54057 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD2F9B81BD1101A00F54057 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				FFD2F9B61BD1101A00F54057 /* AppDelegate.swift */,
 				FFD2F9B81BD1101A00F54057 /* ViewController.swift */,
 				FFD2F9BA1BD1101A00F54057 /* Main.storyboard */,
+				647EB8DE1E71D0E8000AAA57 /* translate.png */,
 				647EB8DC1E71ABB4000AAA57 /* Default.png */,
 				FFD2F9BD1BD1101A00F54057 /* Assets.xcassets */,
 				FFD2F9BF1BD1101A00F54057 /* LaunchScreen.storyboard */,
@@ -128,6 +131,7 @@
 			files = (
 				FFD2F9C11BD1101A00F54057 /* LaunchScreen.storyboard in Resources */,
 				FFD2F9BE1BD1101A00F54057 /* Assets.xcassets in Resources */,
+				647EB8DF1E71D0E8000AAA57 /* translate.png in Resources */,
 				FFD2F9BC1BD1101A00F54057 /* Main.storyboard in Resources */,
 				647EB8DD1E71ABB4000AAA57 /* Default.png in Resources */,
 			);
