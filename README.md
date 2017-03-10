@@ -1,4 +1,4 @@
-# Transtall
+# Transtaal
 
 The student has built an iOS translation app written in Swift, using MyMemory Translate API (https://mymemory.translated.net/doc/spec.php).
 The app was created as part of a practical assignment at the Waterford Institute of Technology (http://www.wit.ie).
